@@ -1,6 +1,6 @@
 $(document).ready(function() {
   $('#roller button.add').on('click', function() {
-    console.log("WAT")
+    console.log("WAT");
     $('.dice').append('<div class="die">0</div>');
   });
 
