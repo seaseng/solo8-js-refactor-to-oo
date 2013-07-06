@@ -4,22 +4,23 @@ function DieView(die) {
   this.die_template = '<div class="die">0</div>';
   this.dice_div_holder = '.dice';
   this.single_die_div = '.die';
-
-  this.addDie = function () {
-    // debugger;
-    $(this.dice_div_holder).append(this.die_template);
-  };
-
-  this.rollDice = function () {
-    // debugger;
-    $(this.single_die_div).each(function (k, each_die_div) {
-      // debugger;
-      $(each_die_div).text( self.die.value() );
-    });
-  };
 }
 
+DieView.prototype = {
+
+  addDie: function () {
+    $(this.dice_div_holder).append(this.die_template);
+  },
+  rollDice: function () {
+    $(this.single_die_div).each(function (k, each_die_div) {
+      $(each_die_div).text( self.die.value() );
+    });
+  }
+};
+
+
 function DieController (die) {
+  var self = this;
   this.die = die;
   this.add_die_button = '#roller button.add';
   this.roll_die_button = '#roller button.roll';
@@ -50,24 +51,7 @@ Die.prototype.value = function() {
 };
 
 $(document).ready(function() {
-
   die = new Die(6);
   die_controller = new DieController(die);
-
   die_controller.addEvents();
-
-  // $('#roller button.add').on('click', function() {
-  //   console.log("WAT");
-  //   $('.dice').append('<div class="die">0</div>');
-  // });
-
-  // $('#roller button.roll').on('click', function() {
-  //   $('.die').each(function(k, die) {
-  //     var value = Math.floor((Math.random()*6)+1);
-  //     $(die).text(value);
-  //   });
-  // });
-
-
-
 });
